@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Publication Pro</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a0dad, #ff4081);
+            color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            margin: 20px 0;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 2.5em;
+            color: #fff;
+        }
+        .button-container {
+            margin: 20px 0;
+        }
+        .grade-button, .subject-button, .topic-button {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .grade-button:hover, .subject-button:hover, .topic-button:hover {
+            background-color: #ff4081; /* Darker color for background */
+            color: #fff; /* Darker color for text */
+            transform: translateY(-3px);
+        }
+        .subject-container, .topic-container {
+            display: none;
+            margin-top: 30px;
+        }
+        .content-area {
+            margin-top: 40px;
+            padding: 20px;
+            color: #3c2a5b;
+            border-radius: 10px;
+            min-height: 200px;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            display: none;
+            transition: color 0.3s ease;
+        }
+        .back-arrow:hover {
+            color: #ff4081;
+        }
+        .module-list {
+            text-align: left;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .module-list button {
+            display: block;
+            background-color: #fff;
+            color: #6a0dad;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-size: 16px;
+            width: 80%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .module-list button:hover {
+            background-color: #ff4081;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .video-container video {
+            width: 80%;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .ar-vr-buttons {
+            margin-top: 20px;
+        }
+        .ar-vr-buttons button {
+            padding: 12px 20px;
+            font-size: 18px;
+            margin: 10px;
+            background-color: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .ar-vr-buttons button:hover {
+            background-color: #6a0dad;
+        }
+        @media (max-width: 768px) {
+            .button-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .grade-button, .subject-button, .topic-button {
+                width: 80%;
+                font-size: 16px;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-arrow" onclick="goBack()">&#8592; Back</a>
+    <h1>Target Publication Pro</h1>
+    <div class="button-container">
+        <button class="grade-button" onclick="showSubjects('grade-11')">11th Grade</button>
+        <button class="grade-button" onclick="showSubjects('grade-12')">12th Grade</button>
+    </div>
+    <div id="grade-11" class="subject-container">
+        <button class="subject-button" onclick="showMaterial('chemistry', 'grade-11')">Chemistry</button>
+        <button class="subject-button" onclick="showMaterial('physics', 'grade-11')">Physics</button>
+        <button class="subject-button" onclick="showMaterial('biology', 'grade-11')">Biology</button>
+    </div>
+    <div id="grade-12" class="subject-container">
+        <button class="subject-button" onclick="showTopics('chemistry', 'grade-12')">Chemistry</button>
+        <button class="subject-button" onclick="showMaterial('physics', 'grade-12')">Physics</button>
+        <button class="subject-button" onclick="showMaterial('biology', 'grade-12')">Biology</button>
+    </div>
+    <div id="topics-chemistry" class="topic-container">
+        <button class="topic-button" onclick="showContent('Solid State')">Solid State</button>
+        <button class="topic-button" onclick="showContent('Solutions')">Solutions</button>
+        <button class="topic-button" onclick="showContent('Ionic Equilibria')">Ionic Equilibria</button>
+        <button class="topic-button" onclick="showContent('Chemical Thermodynamics')">Chemical Thermodynamics</button>
+        <button class="topic-button" onclick="showContent('Electrochemistry')">Electrochemistry</button>
+        <button class="topic-button" onclick="showContent('Chemical Kinetics')">Chemical Kinetics</button>
+        <button class="topic-button" onclick="showContent('Elements of Groups 16, 17 and 18')">Elements of Groups 16, 17 and 18</button>
+        <button class="topic-button" onclick="showContent('Transition and Inner Transition Elements')">Transition and Inner Transition Elements</button>
+        <button class="topic-button" onclick="showContent('Coordination Compounds(1-2)')">Coordination Compounds(1-2)</button>
+        <button class="topic-button" onclick="showContent('Modern Periodic Table')">Modern Periodic Table</button>
+        <button class="topic-button" onclick="showContent('Electronic Configuration of Elements')">Electronic Configuration of Elements</button>
+        <button class="topic-button" onclick="showContent('Logarithms and Antilogarithms')">Logarithms and Antilogarithms</button>
+    </div>
+    <div id="content" class="content-area">
+        <!-- Custom Video content will be displayed here -->
+    </div>
+
+    <script>
+        function goBack() {
+            // Hide all containers
+            document.querySelectorAll('.subject-container, .topic-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById('content').innerHTML = '';
+            // Show grade buttons
+            document.querySelector('.button-container').style.display = 'block';
+            // Hide back arrow
+            document.querySelector('.back-arrow').style.display = 'none';
+        }
+
+        function showSubjects(gradeId) {
+            // Hide grade buttons
+            document.querySelector('.button-container').style.display = 'none';
+            // Hide all subject containers
+            document.querySelectorAll('.subject-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            // Show the selected grade's subject container
+            document.getElementById(gradeId).style.display = 'block';
+            // Show back arrow
+            document.querySelector('.back-arrow').style.display = 'block';
+        }
+
+        function showTopics(subject, gradeId) {
+            // Hide all other containers
+            document.querySelectorAll('.subject-container, .topic-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            // Show the selected subject's topic container
+            document.getElementById(`topics-${subject}`).style.display = 'block';
+        }
+
+        function showMaterial(subject, gradeId) {
+            // Hide all other containers
+            document.querySelectorAll('.subject-container, .topic-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            // Show the content area with subject details
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `<h2>${subject.charAt(0).toUpperCase() + subject.slice(1)}</h2>`;
+            contentDiv.innerHTML += `<p>Here will be the AR/VR interactive content for ${subject}.</p>`;
+        }
+
+        function showContent(topic) {
+            // Hide all other containers
+            document.querySelectorAll('.subject-container, .topic-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `<h2 style="color: white;">${topic}</h2>`;
+
+            // List of modules for Solid State as buttons
+            if (topic === "Solid State") {
+                contentDiv.innerHTML += `<div class="module-list">
+                    <button onclick="showModule('Types of Solids')">1) Types of Solids</button>
+                    <button onclick="showModule('Classifications of Crystalline Solids')">2) Classifications of Crystalline Solids</button>
+                    <button onclick="showModule('Crystal Structure')">3) Crystal Structure</button>
+                    <button onclick="showModule('Cubic System')">4) Cubic System</button>
+                    <button onclick="showModule('Packing of Particles in Crystal Lattice')">5) Packing of Particles in Crystal Lattice</button>
+                    <button onclick="showModule('Packing Efficiency')">6) Packing Efficiency</button>
+                    <button onclick="showModule('Crystal Defects or Imperfections')">7) Crystal Defects or Imperfections</button>
+                    <button onclick="showModule('Electrical Properties of Solids')">8) Electrical Properties of Solids</button>
+                    <button onclick="showModule('Magnetic Properties of Solids')">9) Magnetic Properties of Solids</button>
+                </div>`;
+                contentDiv.innerHTML += `<p>Click on each button to explore the modules.</p>`;
+            } else {
+                contentDiv.innerHTML += `<div class="video-container">
+                    <video controls>
+                        <source src="your_video_file.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`;
+                contentDiv.innerHTML += `<div class="ar-vr-buttons">
+                    <button onclick="enterAR()">Enter AR</button>
+                    <button onclick="enterVR()">Enter VR screen</button>
+                    <button onclick="enterVRW()">Enter VR world</button>
+                </div>`;
+
+            }
+        }
+
+        function showModule(moduleName) {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `<h2 style="color: white;">${moduleName}</h2>`;
+            contentDiv.innerHTML += `<p>Here is the content for ${moduleName}.<br> AR/VR interactive content will be added here.</p>`;
+            contentDiv.innerHTML += `<div class="ar-vr-buttons">
+                <button onclick="enterAR()">Enter  AR</button>
+                <button onclick="enterVR()">Enter VR screen</button>
+                <button onclick="enterVRW()">Enter VR world</button>
+            </div>`;
+        }
+
+        function enterAR() {
+            window.location.href='https://8th.io/rx88d';
+            console.log("done")
+            alert('Entering AR Mode...');
+            // Add AR functionality here
+        }
+
+        function enterVR() {
+            window.location.href='mrfile.html';
+            alert('Entering VR Mode...');
+            
+            // Add VR functionality here
+        }
+        function enterVRW() {
+            window.location.href='vrfile.html';
+            alert('Entering VR Mode...');
+            
+            // Add VR functionality here
+        }
+    </script>
+</body>
+</html>
